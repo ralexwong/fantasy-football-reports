@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchEspn } from '../../../actions/Espn';
@@ -55,19 +55,20 @@ const Espn1 = () => {
                 (You can use my espn league if you want to try it out: 20294539)
             </p>
             <form onSubmit={onSubmit} className="espnForm">
-            <div className='input__container'>
-                <label className='input__label' htmlFor='espnID'>ID</label>
-                <input
-                    required
-                    id='espnID'
-                    maxLength="10"
-                    className={`input__input ${error ? 'input__input--error' : ''}`}
-                    onChange={handleChange}
-                    autoComplete="off"
-                    type="number"
-                    value={input}
-                />
-            </div>
+                <div className='input__container'>
+                    <label className='input__label' htmlFor='espnID'>ID</label>
+                    <input
+                        required
+                        name='espnID'
+                        id='espnID'
+                        maxLength="10"
+                        className={`input__input ${error ? 'input__input--error' : ''}`}
+                        onChange={handleChange}
+                        autoComplete="off"
+                        type="number"
+                        value={input}
+                    />
+                </div>
                 {error ? (
                     <p className='input__helpertext red'><span aria-label='red-X' role='img'>❌</span> This league cannot be found</p>
                 ) : (

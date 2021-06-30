@@ -53,6 +53,7 @@ const Espn2 = () => {
                     <label className='input__label' htmlFor='espnWeek'>Week</label>
                     <input
                         id='espnWeek'
+                        name='espnWeek'
                         required
                         className={`input__input ${error ? 'input__input--error' : ''}`}
                         onChange={handleChange}

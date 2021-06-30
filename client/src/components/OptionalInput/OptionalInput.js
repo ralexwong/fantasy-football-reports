@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { setEspnSeason, setEspnTitle, setEspnCaption } from '../../actions/Espn';
 import { setSleeperSeason, setSleeperTitle, setSleeperCaption } from '../../actions/Sleeper';
 
-const OptionalInput = (props) => {
+const OptionalInput = ({ props }) => {
     const [input, setInput] = useState('')
     const [loading, setLoading] = useState(false);
 
@@ -67,14 +67,18 @@ const OptionalInput = (props) => {
     return (
         <div className={props.open === true ? 'accordian__form--open' : 'accordian__form--close'}>
             <form onSubmit={onSubmit}>
+            <div className='input__container'>
+                <label className='input__label' htmlFor={`${platform}${input}`}>Week</label>
                 <input
+                    id={`${platform}${input}`}
+                    name={`${platform}${input}`}
                     className="input__input"
                     onChange={handleChange}
                     autoComplete="off"
-                    placeholder={input ? input : `${props.input}`}
                     value={input}
                 />
                 <p className='input__helpertext'></p>
+            </div>
 
             </form>
 

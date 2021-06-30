@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchLeagues } from '../../../actions/Sleeper';
-
 
 
 const Sleeper1 = () => {
@@ -61,6 +60,7 @@ const Sleeper1 = () => {
                     <label className='input__label' htmlFor='sleeperUsername'>Username</label>
                     <input
                         id='sleeperUsername'
+                        name='sleeperUsername'
                         required
                         maxLength="25"
                         className={`input__input ${error ? 'input__input--error' : ''}`}

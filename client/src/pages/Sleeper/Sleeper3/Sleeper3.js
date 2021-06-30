@@ -76,6 +76,7 @@ const Sleeper3 = () => {
             <div className='input__container'>
                 <label className='input__label' htmlFor='sleeperWeek'>Week</label>
                 <input
+                    name='sleeperWeek'
                     id='sleeperWeek'
                     required
                     maxLength="2"
