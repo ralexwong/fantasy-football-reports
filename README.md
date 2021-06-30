@@ -1,46 +1,84 @@
-# Getting Started with Create React App
+# Fantasy-football-Weekly-Report
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+When people play competetive games there is always anticipation or interest in their stats and data. This app is aimed towards commissioners of fantasy football leagues who like looking at leaderboards/stats and want to keep owners interested throughout the year.
 
-## Available Scripts
+## Table of Contents
+* [Installation](#installation)
+* [Technologies](#technologies)
+* [How it works](#how-it-works)
+* [Espn Guide](#espn-guide)
+* [Sleeper Guide](#sleeper-guide)
+* [Visuals](#visuals)
+* [Roadmap](#roadmap)
+* [Support](#support)
 
-In the project directory, you can run:
 
-### `yarn start`
+## Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+To run this project, install it locally using npm:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```
+ $ npm install
+ $ npm start
+```
 
-### `yarn test`
+## Technologies
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Project is created with:
+* Node version: 10.15
+* React version: 16.13
+* Bootstrap v4
 
-### `yarn build`
+## How it works
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<ul>
+  <li>You pick which platform your league is in and what week you want the recap to show</li>
+  <li>Depending on the platform you may need to provide more information such as username or league ID</li>
+  <li>Press submit and the app will pull your leagues info through the API and download it into our database</li>
+  <li>It will then pull from the database and display the stats on the screen!</li>
+  <li>Press the `print to pdf` button and your report will download</li>
+  <li>There is an overall stat page and a weekly stat page</li>
+</ul>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Espn Guide
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<ol>
+  <li>Log on to the espn website. (ID cannot be viewed on the app)</li>
+  <li>Copy or remember the highlighted number for your league. This is your league ID.</li>
+</ol>
 
-### `yarn eject`
+![Image](./client/public/images/espn-id.png "espn-id")
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<ol start="3">
+  <li>Go to your league settings and make the league viewable to public. (Can only be done by the league commissioner)</li>
+</ol>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![Image](./client/public/images/espn-public-red-circle.jpg "espn-public-red-circle")
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Sleeper Guide 
 
-## Learn More
+<ul>
+  <li>Only a username is needed! (my username will be provided as an example)</li>
+</ul>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Visuals
+
+
+![Image](./client/public/images/overall-report-example.png "overall-report-example")  
+
+![Image](./client/public/images/weekly-report-example.png "weekly-report-example")
+
+
+## Roadmap
+
+
+The app is compatiable with mobile and desktop. Sleeper and ESPN leagues both work. Other platforms like Yahoo, NFL, etc will be integrated if their API is available.
+Will work on implementing GraphQL so accessing the APIs will be easier and React Native to deploy an app store version.
+
+
+## Suggestions/Feedback/Support
+
+
+If you would like to suggest any improvements or have anything to say about the app please let me know through email at alexhwong18@gmail.com or https://www.linkedin.com/in/iamwong/

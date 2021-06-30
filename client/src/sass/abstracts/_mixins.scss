@@ -1,0 +1,64 @@
+@mixin center-element {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+@mixin border-lg {
+    border: 8px solid $black-color;
+}
+
+@mixin border-md {
+    border: 3px solid $black-color;
+}
+
+@mixin border-sm {
+    border: 1px solid $black-color;
+}
+
+@mixin bold-underline {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+// MEDIA QUERY MANAGER
+/*
+
+0-600PX:        Phone
+600-900PX:      Tablet portrait
+900-1200px:     Tablet landscape
+[1200-1800] is where our normal styler apply
+1800px:         Big desktop
+
+$breakpoint arguement choices:
+- phone
+- tab-port
+- tab-land
+- big-desktop
+ORDER: Base + typography > general layout + grid > page layout > components
+1em = 16px
+
+*/
+
+@mixin respond($breakpoint) {
+    @if $breakpoint == iphone {
+        @media only screen and (max-width: 23.5em) { @content };    //376px
+    }
+    @if $breakpoint == galaxy {
+        @media only screen and (max-width: 26.5em) { @content };    //424px
+    }
+    @if $breakpoint == phone {
+        @media only screen and (max-width: 35.9em) { @content };    //600px
+    }
+    @if $breakpoint == tab-port {
+        @media only screen and (max-width: 56.25em) { @content };     //900px
+    }
+    @if $breakpoint == tab-land {
+        @media only screen and (max-width: 75em) { @content };    //1200px
+    }
+    @if $breakpoint == big-desktop {
+        @media only screen and (min-width: 112.5em) { @content };    //1800
+    }
+}

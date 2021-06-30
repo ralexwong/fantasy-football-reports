@@ -1,0 +1,83 @@
+.cards {
+    // max-width: 25%;
+
+    // @include respond(phone) {
+    //     max-width: 40%;
+    // }
+
+    max-width: 75%;
+    margin: 0 auto;
+
+    @include respond(phone) {
+        max-width: 90%;
+    }
+
+    &__image {
+        width: 100%;
+        max-height: 24vh;
+        display: block;
+
+        @include respond(phone) {
+            height: 17vh;
+        }
+        
+    }
+
+    &__outerBox {
+        @include border-lg;
+
+        @include respond(phone) {
+            @include border-md;
+        }
+    }
+
+    &__innerBox {
+        @include border-md;
+        margin: 2px;
+
+        @include respond(phone) {
+            @include border-sm;
+        }
+    }
+
+    &__lowerBox {
+        @include border-lg;
+        border-top: none;
+        text-align: center;
+        font-size: 2rem;
+        font-weight: 600;
+
+        @include respond(phone) {
+            @include border-md;
+            border-top: none;
+        }
+    }
+
+    &__name {
+        font-size: 1rem;
+
+        @include respond(phone) {
+            font-size: 1.75rem;
+        }
+
+        @include respond(galaxy) {
+            font-size: 1.5rem;
+        }
+
+        @include respond(iphone) {
+            font-size: 1.2rem;
+        }
+    }
+}
+
+.cardsContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-content: space-between;
+
+    @include respond(phone) {
+        display: flex;
+    }
+
+}
+

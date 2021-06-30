@@ -1,0 +1,16 @@
+.dateRow {
+    border-top: 2px solid black;
+    border-bottom: 4px solid black;
+    margin: 0px auto;
+    padding: 0 5px;
+    font-size: 2rem;
+
+    display: flex; 
+    justify-content: space-between;
+
+    @include respond(iphone) {
+        font-size: 1.3rem;
+        border-top: 1px solid black;
+        border-bottom: 2px solid black;
+    }
+}

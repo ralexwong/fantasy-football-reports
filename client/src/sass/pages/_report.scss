@@ -1,0 +1,32 @@
+.reportContainer {
+    border: 3px solid black;
+    margin: 3rem auto;
+    background: white;
+
+    max-width: 90%;
+    padding: 0 1rem;
+
+    @include respond(phone) {
+        max-width: 100%;
+    }
+}
+
+.table {
+    @include respond(phone) {
+        font-size: 1.5rem;
+    }
+}
+
+.pointsGraph {
+    margin-top: 5rem;
+}
+
+.middleRow {
+    display: grid;
+    grid-template-columns: 75% 25%;
+    
+    @include respond(phone) {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+}

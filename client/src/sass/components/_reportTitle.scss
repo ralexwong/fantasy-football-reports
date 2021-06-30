@@ -1,0 +1,53 @@
+.reportTitle {
+    font-family: 'Vast Shadow', cursive;
+    font-size: 2.5rem;
+    text-align: center;
+
+    @include respond(phone) {
+        font-size: 1.7rem;
+    }
+
+    &__header {
+        font-size: 8rem;
+
+        @include respond(phone) {
+            font-size: 5rem;
+        }
+
+        @include respond(galaxy) {
+            font-size: 4rem;
+        }
+
+        @include respond(iphone) {
+            font-size: 3.15rem;
+        }
+    }
+
+    &__scoreboard {
+        font-size: 4rem;
+
+        @include respond(phone) {
+            font-size: 3rem;
+        }
+    }
+}
+
+
+.reportCaption {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    margin-top: -1rem;
+
+    @include respond(phone) {
+        font-size: 1.8rem;
+    }
+
+    @include respond(galaxy) {
+        font-size: 1.5rem;
+    }
+
+    @include respond(iphone) {
+        font-size: 1.5rem;
+    }
+}
