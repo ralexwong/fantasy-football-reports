@@ -76,7 +76,7 @@
     align-content: space-between;
 
     @include respond(phone) {
-        display: flex;
+        grid-template-columns: 1fr 1fr;
     }
 
 }
