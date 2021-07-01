@@ -150,8 +150,6 @@ export const fetchEspn = (id, year, oldFirstPlace, oldLastPlace, oldID) => async
             new SvgToPngConverter().convertFromInput(firstPlace.logo, function(imgData){
                 firstPlace.logo = imgData
             });
-        } else {
-            firstPlace.logo = `https://whispering-woodland-11588.herokuapp.com/${firstPlace.logo}`
         }
     }
 
@@ -163,8 +161,6 @@ export const fetchEspn = (id, year, oldFirstPlace, oldLastPlace, oldID) => async
             new SvgToPngConverter().convertFromInput(lastPlace.logo, function(imgData){
                 lastPlace.logo = imgData
             });
-        } else {
-            lastPlace.logo = `https://whispering-woodland-11588.herokuapp.com/${lastPlace.logo}`
         }
     }
 
@@ -292,8 +288,6 @@ export const setEspnWeek = (week, espn, espnSchedule, oldTopScorer, oldCloseOne)
             new SvgToPngConverter().convertFromInput(topScorer.logo, function(imgData){
                 topScorer.logo = imgData
             });
-        } else {
-            topScorer.logo = `https://whispering-woodland-11588.herokuapp.com/${topScorer.logo}`
         }
     }
 
@@ -306,8 +300,6 @@ export const setEspnWeek = (week, espn, espnSchedule, oldTopScorer, oldCloseOne)
             new SvgToPngConverter().convertFromInput(closeOne.logo, function(imgData){
                 closeOne.logo = imgData
             });
-        } else {
-            closeOne.logo = `https://whispering-woodland-11588.herokuapp.com/${closeOne.logo}`
         }
     }
 

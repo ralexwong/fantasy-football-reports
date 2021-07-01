@@ -7,22 +7,24 @@ const Cards = () => {
     let firstPlace = ""
     let firstPlaceName = "Player 1";
     if (state.espn.espnFirstPlace && state.espn.espnReport) {
-        firstPlace = `https://whispering-woodland-11588.herokuapp.com/${state.espn.espnFirstPlace.logo}`;
+        firstPlace = state.espn.espnFirstPlace.logo
         firstPlaceName = state.espn.espnFirstPlace.name
     } else if (state.sleeper.sleeperFirstPlace && state.sleeper.sleeperReport) {
-        firstPlace = `https://whispering-woodland-11588.herokuapp.com/http://sleepercdn.com/avatars/${state.sleeper.sleeperFirstPlace.logo}`;
+        firstPlace = `http://sleepercdn.com/avatars/${state.sleeper.sleeperFirstPlace.logo}`;
         firstPlaceName = state.sleeper.sleeperFirstPlace.name
     }
 
     let lastPlace = ""
     let lastPlaceName = "Player 2";
     if (state.espn.espnLastPlace && state.espn.espnReport) {
-        lastPlace = `https://whispering-woodland-11588.herokuapp.com/${state.espn.espnLastPlace.logo}`
+        lastPlace = state.espn.espnLastPlace.logo
         lastPlaceName = state.espn.espnLastPlace.name;
     } else if (state.sleeper.sleeperLastPlace && state.sleeper.sleeperReport) {
-        lastPlace = `https://whispering-woodland-11588.herokuapp.com/http://sleepercdn.com/avatars/${state.sleeper.sleeperLastPlace.logo}`;
+        lastPlace = `http://sleepercdn.com/avatars/${state.sleeper.sleeperLastPlace.logo}`;
         lastPlaceName = state.sleeper.sleeperLastPlace.name;
     }
+
+    
     return (
         <div className="cardsContainer">
             <div>
