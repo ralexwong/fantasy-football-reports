@@ -1,11 +1,18 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const DesktopNav = () => {
-    const [sleeperOpen, setSleeperOpen] = useState(false);
-    const [espnOpen, setEspnOpen] = useState(false);
+type Item = {
+    state: boolean,
+    setState: React.Dispatch<React.SetStateAction<boolean>>,
+    name: string,
+    link: string
+}
 
-    const list = [
+const DesktopNav: React.FC<{}> = () => {
+    const [sleeperOpen, setSleeperOpen] = useState<boolean>(false);
+    const [espnOpen, setEspnOpen] = useState<boolean>(false);
+
+    const list: Array<Item> = [
         {
             state: sleeperOpen,
             setState: setSleeperOpen,
@@ -20,8 +27,8 @@ const DesktopNav = () => {
         }
     ]
     return (
-        <ul className='nav__list' tabIndex="0">
-            <li className='nav__item' tabIndex="1">
+        <ul className='nav__list' tabIndex={0}>
+            <li className='nav__item' tabIndex={1}>
                 <Link className="nav__word" to="/">
                     Home
                 </Link>
@@ -32,7 +39,7 @@ const DesktopNav = () => {
                 onClick={() => item.setState(true)}
                 onMouseLeave={() => item.setState(false)}
                 onKeyPress={() => item.setState(true)}
-                tabIndex="0"
+                tabIndex={0}
             >
                 <p className="nav__word">
                     {item.name}

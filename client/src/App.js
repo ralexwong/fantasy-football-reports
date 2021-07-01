@@ -11,11 +11,11 @@ import Intro from './pages/Intro/Intro';
 import Sleeper from './pages/Sleeper/Sleeper';
 import Espn from './pages/Espn/Espn';
 
-import EspnWeeklyReport from "./pages/Report/EspnWeeklyReport";
-import EspnOverallReport from './pages/Report2/EspnOverallReport';
+import EspnWeeklyReport from "./pages/Report/EspnWeeklyReport.tsx";
+import EspnOverallReport from './pages/Report2/EspnOverallReport.tsx';
 
-import SleeperWeeklyReport from './pages/Report/SleeperWeeklyReport';
-import SleeperOverallReport from './pages/Report2/SleeperOverallReport';
+import SleeperWeeklyReport from './pages/Report/SleeperWeeklyReport.tsx';
+import SleeperOverallReport from './pages/Report2/SleeperOverallReport.tsx';
 
 import history from './history';
 

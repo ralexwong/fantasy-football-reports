@@ -1,23 +1,24 @@
-import React, { useRef } from 'react';
+import * as React from "react";
+import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { exportComponentAsPNG } from "react-component-export-image";
-import { createSleeperWeeklyReport } from '../../actions/Sleeper';
-import Report from "./Report"
+import { createSleeperOverallReport } from '../../actions/Sleeper';
+import Report2 from "./Report2"
 
-const ComponentToPrint = React.forwardRef((props, ref) => {
+const ComponentToPrint = React.forwardRef<HTMLInputElement>((props, ref) => {
   return (
     <div ref={ref} style={{ padding: "1rem" }}>
-      <Report />
+      <Report2 />
     </div>
     )
 })
 
-const SleeperWeeklyReport = (props) => {
-  const componentRef = useRef(null)
-  const dispatch = useDispatch()
+const SleeperOverallReport = () => {
+  const componentRef = useRef<HTMLInputElement>(null)
+  const dispatch = useDispatch();
 
-  dispatch(createSleeperWeeklyReport())
+  dispatch(createSleeperOverallReport())
 
   return (
     <>
@@ -26,12 +27,11 @@ const SleeperWeeklyReport = (props) => {
           Click here to download your report as an image!
         </button>
       </div>
-      
       <ComponentToPrint ref={componentRef} />
       <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-      <Link to="/overall-report-sleeper">
+      <Link to="/weekly-report-sleeper">
         <button className="btn btn--sleeper">
-          Click here for the overall report!
+          Click here for the weekly report!
         </button>
       </Link>
       </div>
@@ -39,4 +39,4 @@ const SleeperWeeklyReport = (props) => {
   )
 }
 
-export default SleeperWeeklyReport;
+export default SleeperOverallReport;

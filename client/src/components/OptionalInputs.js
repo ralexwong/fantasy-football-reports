@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import OptionalInput from './OptionalInput';
 
@@ -20,7 +20,7 @@ export default function OptionalInputs(props) {
         <p className="heading-tertiary">Optional Inputs</p>
 
         {inputs.map((input, i) => {
-          return <div className='accordian' key={i}>
+          return <div className='accordian' key={input}>
             <div className='accordian__title' onClick={() => handleClick(i)} >
               <p>{input} <span className={`accordian__arrow ${open[i] === true ? 'accordian__arrow--active' : ''}`}><svg width="16" height="10">
     <polygon points="0,0 16,0 8,10"/>

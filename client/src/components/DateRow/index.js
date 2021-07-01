@@ -1,2 +1,2 @@
-import DateRow from './DateRow.js';
+import DateRow from './DateRow';
 export default DateRow;

@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import Hamburger from './Hamburger';
 import DesktopNav from './DesktopNav';
 
 const Navagation = () => {
-  const [isDesktop, setDesktop] = useState(window.innerWidth > 600);
+  const [isDesktop, setDesktop] = useState<boolean>(window.innerWidth > 600);
 
   const updateMedia = () => {
     setDesktop(window.innerWidth > 600);

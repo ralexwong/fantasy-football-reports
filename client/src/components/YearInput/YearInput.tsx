@@ -1,17 +1,21 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { setEspnYear } from '../../actions/Espn';
 import { setSleeperYear } from '../../actions/Sleeper';
 
-const YearInput = (props) => {
+type Props = {
+    platform: string
+}
 
-    const [input, setInput] = useState(2020)
+const YearInput = (props: Props) => {
 
-    const handleChange = (e) => {
+    const [input, setInput] = useState<string>('2021')
+
+    const handleChange = (e: { target: HTMLInputElement }) => {
         setInput(e.target.value);
     }
 
-    const onSubmit = (e) => {
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         console.log(input);
 
@@ -38,7 +42,7 @@ const YearInput = (props) => {
                     value={input}
                     type="number"
                     />
-                <button onClick={onSubmit} type="button" className="btn btn--sleeper">Submit</button>
+                <button type="button" className="btn btn--sleeper">Submit</button>
             </form>
         </div>
     )

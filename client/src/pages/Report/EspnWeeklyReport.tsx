@@ -1,11 +1,12 @@
-import React, { useRef } from 'react';
+import * as React from "react";
+import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { exportComponentAsPNG } from "react-component-export-image";
 import { createEspnWeeklyReport } from '../../actions/Espn';
 import Report from "./Report"
 
-const ComponentToPrint = React.forwardRef((props, ref) => {
+const ComponentToPrint = React.forwardRef<HTMLDivElement>((props, ref) => {
   return (
     <div ref={ref} style={{ padding: "1rem" }}>
       <Report />
@@ -13,8 +14,8 @@ const ComponentToPrint = React.forwardRef((props, ref) => {
     )
 })
 
-const EspnWeeklyReport = (props) => {
-  const componentRef = useRef(null)
+const EspnWeeklyReport = () => {
+  const componentRef = useRef<HTMLDivElement>(null)
   const dispatch = useDispatch()
 
   dispatch(createEspnWeeklyReport())

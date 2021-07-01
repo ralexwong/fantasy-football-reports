@@ -2,10 +2,10 @@ import React from "react";
 import { useSelector } from 'react-redux';
 
 const Title = () => {
-    const state = useSelector((state) => state)
+    const state = useSelector((state: any) => state)
 
-    let title
-    let caption
+    let title: string | undefined
+    let caption: string | undefined
 
     if (state.sleeper.sleeperReport && state.sleeper.sleeperTitle) {
         title = state.sleeper.sleeperTitle
