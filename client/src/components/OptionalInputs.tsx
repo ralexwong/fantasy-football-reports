@@ -2,14 +2,16 @@ import { useState } from 'react';
 
 import OptionalInput from './OptionalInput';
 
-const inputs = ['Season', 'Title', 'Caption']
+const inputs: string[] = ['Season', 'Title', 'Caption']
 
-export default function OptionalInputs(props) {
+type Props = {
+  platform: string
+}
 
-  const [open, setOpen] = useState(new Array(inputs.length).fill(false))
-  const handleClick = (i) => {
-    console.log(i)
-    let set = [...open]
+export default function OptionalInputs(props: Props) {
+  const [open, setOpen] = useState<boolean[]>(new Array(inputs.length).fill(false))
+  const handleClick = (i: number) => {
+    let set: boolean[] = [...open]
     set[i] = !set[i]
     setOpen(set)
   }

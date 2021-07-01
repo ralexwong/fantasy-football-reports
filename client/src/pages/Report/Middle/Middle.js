@@ -1,4 +1,4 @@
-import React from 'react';
+
 import Standouts from '../Standouts';
 import Scoreboard from '../Scoreboard';
 

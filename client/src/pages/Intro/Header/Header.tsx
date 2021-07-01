@@ -1,6 +1,8 @@
-import React from 'react'
+type Props = {
+    click: React.MouseEventHandler<HTMLButtonElement>
+}
 
-const Header = (props) => {
+const Header = (props: Props) => {
     return (
         <header className='introHeader'>
             <div className='introHeader__text-box'>
@@ -9,7 +11,7 @@ const Header = (props) => {
                     <span className='heading-primary--sub'>Weekly Reports</span>
                 </h1>
 
-                <button style={{ height: '7rem', fontSize: '2rem' }} onClick={props.click} className='btn btn--white btn--animated'>Choose Your Platform!</button>  
+                <button style={{ fontSize: '2rem' }} onClick={props.click} className='btn btn--white btn--animated'>Choose Your Platform!</button>  
             </div>
         </header>
     )

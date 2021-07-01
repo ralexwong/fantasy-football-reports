@@ -1,4 +1,4 @@
-import React from "react";
+import { useRef } from "react";
 import Header from './Header';
 import About from './About';
 import Platforms from './Platforms';
@@ -13,16 +13,15 @@ const style = {
 }
 
 const Index = () => {
-  const myRef = React.createRef()
+  const myRef = useRef(null)
   const scrollToSection = (ref) => window.scrollTo(0, ref.current.offsetTop);
-  const el2 = myRef;
 
   return (
     <div style={style} >
-      <Header click={()=> scrollToSection(el2)} />
+      <Header click={()=> scrollToSection(myRef)} />
       <About />
       <Features />
-      <Platforms reference={el2} />
+      <Platforms ref={myRef} />
       {/* <Reviews /> */}
       <Register />
       <Footer />

@@ -1,9 +1,13 @@
-import React from 'react';
+
 import { Link } from "react-router-dom";
 
-const Platforms = (props) => {
+type Props = {
+    ref: React.MutableRefObject<null>
+}
+
+const Platforms = (props: Props) => {
     return (
-        <section className='platforms' ref={props.reference}>
+        <section className='platforms' ref={props.ref}>
             <h2 className='heading-secondary u-margin-bottom-big'>Choose your platform</h2>
 
             <div className='platforms__container'>
