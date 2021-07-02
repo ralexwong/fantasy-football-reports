@@ -2,15 +2,20 @@ import { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { setLeague_id, fetchLeagueInfo } from '../../../actions/Sleeper';
 
+type Leagues = {
+    league_id: string,
+    name: string
+}
+
 const Sleeper2 = () => {
 
-    const [active, setActive] = useState('');
-    const state = useSelector((state) => state)
+    const [active, setActive] = useState<string>('');
+    const state = useSelector((state: any) => state)
     const dispatch = useDispatch();
 
-    const onClick = (e) => {
-        console.log(e.target.getAttribute('id'));
-        const league = e.target.id;
+    const onClick = (e: any) => {
+        // console.log(e.target.getAttribute('id'));
+        const league: string = e.target.id;
 
         if (active === league) { 
             setActive('');
@@ -23,10 +28,10 @@ const Sleeper2 = () => {
         dispatch(fetchLeagueInfo(league));
     }
 
-    const mapLeagues = (leagues) => {
+    const mapLeagues = (leagues: Leagues[]) => {
         return leagues.map(league => {
             return (
-                <p className={`input__list ${active === league.league_id ? `input__list--active` : ``}`} id={league.league_id} key={league.league_id} onClick={(e) => onClick(e)} >
+                <p className={`input__list ${active === league.league_id ? `input__list--active` : ``}`} id={league.league_id} key={league.league_id} onClick={onClick}>
                     {league.name} {active === league.league_id ? <span aria-label='green-checkmark' role='img'>✔️</span> : ''}
                 </p>
             )

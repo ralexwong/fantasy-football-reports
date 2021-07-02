@@ -5,10 +5,20 @@ import CanvasJSReact from '../../../canvasjs.react';
 const CanvasJS = CanvasJSReact.CanvasJS;
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-const GraphPoints = () => {
-  const state = useSelector((state) => state)
+type Chart = {
+  
+}
 
-  const addSymbols = (e) => {
+type Data = {
+  y: number, 
+  label: string
+}
+
+const GraphPoints = () => {
+  const state = useSelector((state: any) => state)
+
+  const addSymbols = (e: any) => {
+    console.log(e)
 		let suffixes = ["", "K", "M", "B"];
 		let order = Math.max(Math.floor(Math.log(e.value) / Math.log(1000)), 0);
 		if(order > suffixes.length - 1)
@@ -17,7 +27,7 @@ const GraphPoints = () => {
 		return CanvasJS.formatNumber(e.value / Math.pow(1000, order)) + suffix;
 	}
 
-  let data = [];
+  let data: Data[] = [];
   if (state.espn.espnReport && state.espn.espnPowerRanking) {
     data = state.espn.espnPowerRanking
   } else if (state.sleeper.sleeperReport && state.sleeper.sleeperPowerRanking) {

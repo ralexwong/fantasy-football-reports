@@ -4,10 +4,30 @@ import CanvasJSReact from '../../../canvasjs.react';
 
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-const GraphPPG = () => {
-  const [width, setWidth] = useState(0)
+type Options = {
+  animationEnabled: boolean,
+    theme: string,
+    title: {
+      text: string
+    },
+    axisX: {
+      labelFontSize: number,
+      labelAngle: number,
+      margin: number,
+    },
+    data: [{
+      type: string,
+      indexLabel?: string,
+      indexLabelFontColor: string,
+      indexLabelPlacement: string,
+      dataPoints: number[]
+    }]
+}
 
-  const state = useSelector((state) => state)
+const GraphPPG = () => {
+  const [width, setWidth] = useState<number>(0)
+
+  const state = useSelector((state: any) => state)
 
   useEffect(() => {
       updateWindowDimensions()
@@ -22,14 +42,14 @@ const GraphPPG = () => {
       setWidth(window.innerWidth);
   };
 
-  let font_size = ""
+  let font_size: number = 0
   if (width < 575) {
     font_size = 6.9
   } else {
     font_size = 12
   }
 
-  let graphPPG = []
+  let graphPPG: number[] = []
 
   if (state.espn.espnReport) {
     graphPPG = state.espn.espnGraphPPG
@@ -37,7 +57,7 @@ const GraphPPG = () => {
     graphPPG = state.sleeper.sleeperGraphPPG
   } 
 
-  const options = {
+  const options: Options = {
     animationEnabled: true,
     theme: "light2", //"light1", "dark1", "dark2"
     title: {

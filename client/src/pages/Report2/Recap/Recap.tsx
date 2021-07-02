@@ -1,17 +1,29 @@
 
 import { useSelector } from 'react-redux';
 
-const Recap = () => {
-  const state = useSelector((state) => state)
+type Recap = {
+  abbrev: string,
+  PPGcolor: string,
+  PFcolor: string,
+  PAcolor: string,
+  PPG: string,
+  PF: string,
+  PA: string,
+  wins: string,
+  losses: string
+}
 
-  let week = "";
+const Recap = () => {
+  const state = useSelector((state: any) => state)
+
+  let week: string = "";
   if (state.espn.espnReport && state.espn.espnWeek) {
     week = state.espn.espnWeek
   } else if (state.sleeper.sleeperReport && state.sleeper.sleeperWeek) {
     week = state.sleeper.sleeperWeek;
   }
 
-  let recap = [];
+  let recap: Recap[] = [];
   if (state.espn.espnReport && state.espn.espnRecap) {
     recap = state.espn.espnRecap
   } else if (state.sleeper.sleeperReport && state.sleeper.sleeperRecap) {
@@ -24,7 +36,7 @@ const Recap = () => {
       <table>
         <thead>
           <tr>
-            <th className="recap__week" colSpan="7">Week {week}</th>
+            <th className="recap__week">Week {week}</th>
           </tr>
           <tr>
             <th>Team</th>
@@ -36,7 +48,7 @@ const Recap = () => {
             <th>L</th>
           </tr>
         </thead>
-        <tbody borderless="true">
+        <tbody>
           {(recap ? 
             (
               recap.map((row, i) => (

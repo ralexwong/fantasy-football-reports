@@ -1,6 +1,11 @@
-;
+type Props = {
+    points1: string,
+    points2: string,
+    roster1: string,
+    roster2: string
+}
 
-const ScoreboardRow = (props) => {
+const ScoreboardRow = (props: Props) => {
     return (
         <div className="scoreboard__row">
             <div className="scoreboard__scores">

@@ -1,16 +1,23 @@
 
 import { useSelector } from 'react-redux';
 
-const Standouts = () => {   
-    const state = useSelector((state) => state)
+type Profile = {
+    name: string,
+    score?: number,
+    difference?: number,
+    logo: string,
+}
 
-    let topScorer = {
+const Standouts = () => {   
+    const state = useSelector((state: any) => state)
+
+    let topScorer: Profile = {
         name: "",
         score: 0,
         logo: "",
     }
 
-    let closeOne = {
+    let closeOne: Profile = {
         name: "",
         difference: 0,
         logo: "",
@@ -37,7 +44,7 @@ const Standouts = () => {
                             <img
                                 crossOrigin="anonymous"
                                 referrerPolicy="origin"
-                                onError={(event) => event.target.setAttribute("src", "./images/nfl-logo.jpg")}
+                                onError={(event: React.SyntheticEvent<HTMLImageElement, Event>) => event.currentTarget.setAttribute("src", "./images/nfl-logo.jpg")}
                                 src={topScorer.logo}
                                 alt="poop"
                                 className="cards__image" />
@@ -62,7 +69,7 @@ const Standouts = () => {
                             <img
                                 crossOrigin="anonymous"
                                 referrerPolicy="origin"
-                                onError={(event) => event.target.setAttribute("src", "./images/nfl-logo.jpg")}
+                                onError={(event: React.SyntheticEvent<HTMLImageElement, Event>) => event.currentTarget.setAttribute("src", "./images/nfl-logo.jpg")}
                                 src={closeOne.logo}
                                 alt="poop"
                                 className="cards__image" />

@@ -3,21 +3,21 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setEspnWeek } from '../../../actions/Espn';
 
 const Espn2 = () => {
-    const [input, setInput] = useState("");
+    const [input, setInput] = useState<string>("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false)
 
-    const state = useSelector((state) => state.espn);
+    const state = useSelector((state: any) => state.espn);
     const dispatch = useDispatch();
 
-    const handleChange = (event) => {
+    const handleChange = (event: { target: HTMLInputElement; }) => {
         const { maxLength } = event.target;
         const message = event.target.value.slice(0, maxLength);
 
         setInput(message);
     }
 
-    const onSubmit = (e) => {
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         onLoading();
         if (!state.espnID) {
@@ -75,7 +75,7 @@ const Espn2 = () => {
                         Loading...
                     </button>
                 ) : (
-                    <button onClick={onSubmit} type="button" className="btn btn--espn">Submit</button>
+                    <button type="button" className="btn btn--espn">Submit</button>
                 )
             }
             </form>

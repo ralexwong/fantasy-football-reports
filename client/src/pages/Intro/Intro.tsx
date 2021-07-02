@@ -14,7 +14,7 @@ const style = {
 
 const Index = () => {
   const myRef = useRef(null)
-  const scrollToSection = (ref) => window.scrollTo(0, ref.current.offsetTop);
+  const scrollToSection = (ref: any) => window.scrollTo(0, ref.current.offsetTop);
 
   return (
     <div style={style} >

@@ -4,23 +4,22 @@ import { fetchLeagues } from '../../../actions/Sleeper';
 
 
 const Sleeper1 = () => {
-    const [input, setInput] = useState("");
-    const [loading, setLoading] = useState(false);
+    const [input, setInput] = useState<string>("");
+    const [loading, setLoading] = useState<boolean>(false);
 
-    const state = useSelector((state) => state)
+    const state = useSelector((state: any) => state)
     const dispatch = useDispatch()
     
-    const handleChange = (event) => {
+    const handleChange = (event: { target: HTMLInputElement; }) => {
         const { maxLength } = event.target;
         const message = event.target.value.slice(0, maxLength);
 
         setInput(message);
     }
 
-    const onSubmit = (e) => {
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         onLoading();
-        console.log(input);
 
         let regex = /^[A-Za-z0-9 ]+$/;
 
@@ -41,7 +40,7 @@ const Sleeper1 = () => {
         1500);
     }
 
-    let error = false
+    let error: boolean = false
     if (state.sleeper.sleeperUsername === null) {
         error = true
     }
@@ -62,7 +61,7 @@ const Sleeper1 = () => {
                         id='sleeperUsername'
                         name='sleeperUsername'
                         required
-                        maxLength="25"
+                        maxLength={25}
                         className={`input__input ${error ? 'input__input--error' : ''}`}
                         onChange={handleChange}
                         value={input}
@@ -80,7 +79,7 @@ const Sleeper1 = () => {
                         Loading...
                     </button>
                 ) : (
-                    <button onClick={onSubmit} type="button" className="btn btn--sleeper">Submit</button>
+                    <button type="button" className="btn btn--sleeper">Submit</button>
                 )}
             </form>
         </div>

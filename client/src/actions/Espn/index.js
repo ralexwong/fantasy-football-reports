@@ -165,7 +165,6 @@ export const fetchEspn = (id, year, oldFirstPlace, oldLastPlace, oldID) => async
     }
 
     if (id !== oldID) {
-        console.log('hit')
         dispatch({ type: RESET_ESPN_WEEK, payload: null })
     }
 

@@ -16,9 +16,9 @@ import { fetchMatchupPoints, setSleeperError } from '../../../actions/Sleeper';
 
 
 const Sleeper3 = () => {
-    const [week, setWeek] = useState('');
-    const [loading, setLoading] = useState(false)
-    const state = useSelector((state) => state.sleeper)
+    const [week, setWeek] = useState<number>(1);
+    const [loading, setLoading] = useState<boolean>(false)
+    const state = useSelector((state: any) => state.sleeper)
     const dispatch = useDispatch();
 
 
@@ -38,14 +38,14 @@ const Sleeper3 = () => {
         
     // }, [])
 
-    const handleChange = (event) => {
+    const handleChange = (event: any) => {
         const { maxLength } = event.target;
         const message = event.target.value.slice(0, maxLength);
         setWeek(message);
     }
 
 
-    const onSubmit = (e) => {
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         onLoading();
         if (week > 18 || week < 1) {
@@ -79,7 +79,7 @@ const Sleeper3 = () => {
                     name='sleeperWeek'
                     id='sleeperWeek'
                     required
-                    maxLength="2"
+                    maxLength={2}
                     className="input__input"
                     onChange={handleChange}
                     autoComplete="off"
@@ -98,7 +98,7 @@ const Sleeper3 = () => {
                         Loading...
                     </button>
                 ) : (
-                    <button onClick={onSubmit} type="button" className="btn btn--sleeper">Submit</button>
+                    <button type="button" className="btn btn--sleeper">Submit</button>
                 )}
             </form>
         </div>

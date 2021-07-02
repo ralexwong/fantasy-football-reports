@@ -2,10 +2,10 @@
 import { useSelector } from 'react-redux';
 
 const Cards = () => {
-    const state = useSelector((state) => state)
+    const state = useSelector((state: any) => state)
 
-    let firstPlace = ""
-    let firstPlaceName = "Player 1";
+    let firstPlace: string = ""
+    let firstPlaceName: string = "Player 1";
     if (state.espn.espnFirstPlace && state.espn.espnReport) {
         firstPlace = state.espn.espnFirstPlace.logo
         firstPlaceName = state.espn.espnFirstPlace.name
@@ -14,8 +14,8 @@ const Cards = () => {
         firstPlaceName = state.sleeper.sleeperFirstPlace.name
     }
 
-    let lastPlace = ""
-    let lastPlaceName = "Player 2";
+    let lastPlace: string = ""
+    let lastPlaceName: string = "Player 2";
     if (state.espn.espnLastPlace && state.espn.espnReport) {
         lastPlace = state.espn.espnLastPlace.logo
         lastPlaceName = state.espn.espnLastPlace.name;
@@ -36,7 +36,7 @@ const Cards = () => {
                             <img
                                 crossOrigin="anonymous"
                                 referrerPolicy="origin"
-                                onError={(event) => event.target.setAttribute("src", "./images/nfl-logo.jpg")}
+                                onError={(event: React.SyntheticEvent<HTMLImageElement, Event>) => event.currentTarget.setAttribute("src", "./images/nfl-logo.jpg")}
                                 src={firstPlace}
                                 alt="poop"
                                 className="cards__image" />
@@ -57,7 +57,7 @@ const Cards = () => {
                             <img
                                 crossOrigin="anonymous"
                                 referrerPolicy="origin"
-                                onError={(event) => event.target.setAttribute("src", "./images/nfl-logo.jpg")}
+                                onError={(event: React.SyntheticEvent<HTMLImageElement, Event>) => event.currentTarget.setAttribute("src", "./images/nfl-logo.jpg")}
                                 src={lastPlace}
                                 alt="poop"
                                 className="cards__image" />
