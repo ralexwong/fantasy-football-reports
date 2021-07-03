@@ -28,7 +28,7 @@ import axios from 'axios';
 
 // Grabs the user's leagues -----------------------------------------------
 
-export const fetchLeagues = (username, year) => async dispatch => {
+export const fetchLeagues = (username: string, year: string) => async (dispatch: any) => {
     let league_data = [];
     
     // grab the users username_id
@@ -53,9 +53,24 @@ export const fetchLeagues = (username, year) => async dispatch => {
     dispatch({ type: SET_SLEEPER_USERNAME, payload: username })
 }
 
+
 // Grabs the leagues -------------------------------------------------
 
-export const fetchLeagueInfo = (league_id) => async dispatch => {
+type Recap = {
+    abbrev: string,
+    PPGcolor: string,
+    PFcolor: string,
+    PAcolor: string,
+    PPG: number,
+    PF: number,
+    PA: number,
+    wins: string,
+    losses: string,
+    name: string,
+    logo: string,
+}
+
+export const fetchLeagueInfo = (league_id: string) => async (dispatch: any) => {
     const resUsers = await axios.get(`https://api.sleeper.app/v1/league/${league_id}/users`);
     const users = resUsers.data;
     
@@ -138,6 +153,10 @@ export const fetchLeagueInfo = (league_id) => async dispatch => {
 
             name: name,
             logo: logo,
+
+            PPGcolor: '',
+            PFcolor: '',
+            PAcolor: ''
         })
     }
 
@@ -185,13 +204,55 @@ export const fetchLeagueInfo = (league_id) => async dispatch => {
 
 // Set league_id in state just in case ---------------------------------------------
 
-export const setLeague_id = (league_id) => dispatch => {
+export const setLeague_id = (league_id: string) => (dispatch: any) => {
     dispatch({ type: SET_LEAGUE_ID, payload: league_id })
 }
 
 // Grabs the points for that week --------------------------------------------------
 
-export const fetchMatchupPoints = (week, league_id, league_info) => async dispatch => {
+type TopScorer = {
+    name: string,
+    score: number | string,
+    logo: string,
+}
+
+type CloseOne = {
+    name: string,
+    difference: number | string,
+    logo: string,
+}
+
+type Array = {
+    roster_id: string,
+    points: string | number,
+    matchup_id: number,
+    logo: string,
+    name: string,
+}
+
+type League_info = {
+    roster_id: string,
+    avatar: string,
+    display_name: string
+}
+
+type Matchups = {
+    roster1: string,
+    points1: number | string,
+    logo1: string,
+
+    roster2: string,
+    points2: number | string,
+    logo2: string,
+} 
+
+type GraphPPG = {
+    label: string,
+    y: number | string,
+    color: string
+}
+
+export const fetchMatchupPoints = (week: number, league_id: string, league_info: League_info[]) => async (dispatch: any) => {
     let response
     try {
         response = await axios.get(`https://api.sleeper.app/v1/league/${league_id}/matchups/${week}`);
@@ -204,27 +265,29 @@ export const fetchMatchupPoints = (week, league_id, league_info) => async dispat
     console.log(data)
 
     // push relevant data into array and send to client side to be pushed into state
-    const array = [];
+    const array: Array[] = [];
     for (let i = 0; i < data.length; i++) {
       array.push({
         roster_id: data[i].roster_id,
         points: parseFloat(data[i].points).toFixed(2),
-        matchup_id: data[i].matchup_id
+        matchup_id: data[i].matchup_id,
+        logo: '',
+        name: ''
       })
     }
 
-    const topScorer = {
+    const topScorer: TopScorer = {
         name: "bob",
         score: 0,
         logo: ""
     }
-    const closeOne = {
+    const closeOne: CloseOne = {
         name: "bob",
         difference: Infinity,
         logo: ""
     }
-    const matchups = [];
-    const graphPPG = [];
+    const matchups: Matchups[] = [];
+    const graphPPG: GraphPPG[] = [];
 
     // console.log(league_info)
 
@@ -261,24 +324,21 @@ export const fetchMatchupPoints = (week, league_id, league_info) => async dispat
     // console.log(matchups)
 
     for (let i = 0; i < matchups.length; i++) {
-        let points1 = parseFloat(matchups[i].points1);
-        let points2 = parseFloat(matchups[i].points2);
-
-        if (points1 > points2) {
-          graphPPG.push({ label: matchups[i].roster1, y: points1, color: "#00006b" });
-          graphPPG.push({ label: matchups[i].roster2, y: points2, color: "#b61e1e" });
+        if (matchups[i].points1 > matchups[i].points2) {
+          graphPPG.push({ label: matchups[i].roster1, y: matchups[i].points1, color: "#00006b" });
+          graphPPG.push({ label: matchups[i].roster2, y: matchups[i].points2, color: "#b61e1e" });
         } else {
-          graphPPG.push({ label: matchups[i].roster1, y: points1, color: "#b61e1e" });
-          graphPPG.push({ label: matchups[i].roster2, y: points2, color: "#00006b" });
+          graphPPG.push({ label: matchups[i].roster1, y: matchups[i].points1, color: "#b61e1e" });
+          graphPPG.push({ label: matchups[i].roster2, y: matchups[i].points2, color: "#00006b" });
         }
     }
 
     // sorts the graphPPG by points
-    graphPPG.sort(function (a, b) { return b.y - a.y })
+    graphPPG.sort(function (a: any, b: any) { return b.y - a.y })
 
     for (let k = 0; k < matchups.length; k++) {
-        let points1 = parseFloat(matchups[k].points1);
-        let points2 = parseFloat(matchups[k].points2);
+        let points1: any = matchups[k].points1;
+        let points2: any = matchups[k].points2;
 
         if (points1 > topScorer.score) {
             topScorer.score = matchups[k].points1;
@@ -318,50 +378,49 @@ export const fetchMatchupPoints = (week, league_id, league_info) => async dispat
 
 // Grabs the user's payouts for that league -----------------------------------------
 
-// export const fetchPayout = () => async dispatch => {
+// export const fetchPayout = () => async (dispatch: any) => {
 //     const response = await axios.get(``)
 // }
 
 // push waivers data to state -------------------------------------
 
-export const setWaiversToState = (data) => dispatch => {
-    dispatch({ type: SET_WAIVERS_TO_STATE, payload: data })
-}
+// export const setWaiversToState = (data: string) => (dispatch: any) => {
+//     dispatch({ type: SET_WAIVERS_TO_STATE, payload: data })
+// }
 
 // create sleeper report --------------------------------------
 
-export const createSleeperOverallReport = () => dispatch => {
+export const createSleeperOverallReport = () => (dispatch: any) => {
     dispatch({ type: SET_SLEEPER_REPORT, payload: true })
     dispatch({ type: SET_ESPN_REPORT, payload: false })
 }
-export const createSleeperWeeklyReport = () => dispatch => {
+export const createSleeperWeeklyReport = () => (dispatch: any) => {
     dispatch({ type: SET_SLEEPER_REPORT, payload: true })
     dispatch({ type: SET_ESPN_REPORT, payload: false })
 }
 
 // set sleeper title -----------------------------------------
-export const setSleeperTitle = data => async dispatch => {
+export const setSleeperTitle = (data: string) => (dispatch: any) => {
     dispatch({ type: SET_SLEEPER_TITLE, payload: data })
 }
 
 // set sleeper caption ------------------------------------------
-export const setSleeperCaption = data => async dispatch => {
+export const setSleeperCaption = (data: string) => (dispatch: any) => {
     dispatch({ type: SET_SLEEPER_CAPTION, payload: data })
 }
 
 // set sleeper season -----------------------------------------------
-export const setSleeperSeason = data => async dispatch => {
+export const setSleeperSeason = (data: string) => (dispatch: any) => {
     dispatch({ type: SET_SLEEPER_SEASON, payload: data })
 }
 
 // set sleeper year -------------------------------------------
-export const setSleeperYear = data => async dispatch => {
+export const setSleeperYear = (data: string) => (dispatch: any) => {
     dispatch({ type: SET_SLEEPER_YEAR, payload: data })
 }
 
 // pass sleeper week error message -------------------------------
-export const setSleeperError = data => async dispatch => {
-    console.log('hit')
+export const setSleeperError = (data: boolean | string) => (dispatch: any) => {
     console.log(data)
     dispatch({ type: SLEEPER_WEEK_ERROR, payload: data })
 }

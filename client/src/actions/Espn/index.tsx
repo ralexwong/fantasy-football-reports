@@ -23,8 +23,29 @@ import {
 import axios from 'axios';
 import SvgToPngConverter from '../../components/SvgToPngConverter';
 
+type Place = {
+    name: string,
+    logo: string,
+    original: string,
+}
+
+type Recap = {
+    abbrev: string,
+    PPGcolor: string,
+    PFcolor: string,
+    PAcolor: string,
+    PPG: number,
+    PF: number,
+    PA: number,
+    wins: string,
+    losses: string,
+    name: string,
+    logo: string,
+    shorterName: string
+}
+
 // grab the espn league info -------------------------------------
-export const fetchEspn = (id, year, oldFirstPlace, oldLastPlace, oldID) => async dispatch => {
+export const fetchEspn = (id: string, year: string, oldFirstPlace: Place, oldLastPlace: Place, oldID: string) => async (dispatch: any) => {
     // console.log(id);
     let response;
     try {
@@ -77,7 +98,7 @@ export const fetchEspn = (id, year, oldFirstPlace, oldLastPlace, oldID) => async
     powerRanking.sort(function (a, b) { return b.y - a.y })
 
     // create the recap object
-    let recapInfo = []
+    let recapInfo: Recap[] = []
     for (let i = 0; i < teamsInfo.length; i++) {
         let abbrev = teamsInfo[i].abbrev;
         let PPG = parseFloat((teamsInfo[i].totalPoints / ((teamsInfo[i].wins) + (teamsInfo[i].losses))).toFixed(2));
@@ -100,7 +121,11 @@ export const fetchEspn = (id, year, oldFirstPlace, oldLastPlace, oldID) => async
 
             name: name,
             logo: logo,
-            shorterName: shorterName
+            shorterName: shorterName,
+
+            PPGcolor: '',
+            PFcolor: '',
+            PAcolor: ''
         })
     }
 
@@ -147,7 +172,7 @@ export const fetchEspn = (id, year, oldFirstPlace, oldLastPlace, oldID) => async
         const firstPlaceString = firstPlace.logo.substring(firstPlaceLength-3, firstPlaceLength)
     
         if (firstPlaceString === 'svg') {
-            new SvgToPngConverter().convertFromInput(firstPlace.logo, function(imgData){
+            new SvgToPngConverter().convertFromInput(firstPlace.logo, function(imgData: string){
                 firstPlace.logo = imgData
             });
         }
@@ -158,7 +183,7 @@ export const fetchEspn = (id, year, oldFirstPlace, oldLastPlace, oldID) => async
         const lastPlaceString = lastPlace.logo.substring(lastPlaceLength-3, lastPlaceLength)
     
         if (lastPlaceString === 'svg') {
-            new SvgToPngConverter().convertFromInput(lastPlace.logo, function(imgData){
+            new SvgToPngConverter().convertFromInput(lastPlace.logo, function(imgData: string){
                 lastPlace.logo = imgData
             });
         }
@@ -179,27 +204,74 @@ export const fetchEspn = (id, year, oldFirstPlace, oldLastPlace, oldID) => async
     dispatch({ type: ESPN_ID, payload: id })
 }
 
+type Espn = {
+    id: string,
+    name: string,
+    logo: string,
+    shorterName: string
+}
+
+type Schedule = {
+    matchupPeriodId: number,
+    away: Location,
+    home: Location,
+}
+
+type Location = {
+    teamId: string,
+    logo: string,
+    shorterName: string,
+    totalPoints: string
+}
+
+type TopScorer = {
+    name: string,
+    score: number,
+    logo: string,
+    original: string
+}
+
+type CloseOne = {
+    name: string,
+    difference: number | string,
+    logo: string,
+    original: string
+}
+
+type Matchups = {
+    roster1: string,
+    points1: number,
+    logo1: string,
+    shorterName1: string,
+
+    roster2: string,
+    points2: number,
+    logo2: string,
+    shorterName2: string
+}
+
 // setting the espn week --------------------------------------------------------
-export const setEspnWeek = (week, espn, espnSchedule, oldTopScorer, oldCloseOne) => async dispatch => {
+export const setEspnWeek = (week: number, espn: Espn[], espnSchedule: Schedule[], oldTopScorer: TopScorer, oldCloseOne: CloseOne) => async (dispatch: any) => {
 
     // console.log(espn);
     // console.log(espnSchedule);
 
-    let topScorer = {
+    let topScorer: TopScorer = {
         name: "bob",
         score: 0,
         logo: "",
         original : ''
     }
-    let closeOne = {
+    let closeOne: CloseOne = {
         name: "bob",
         difference: Infinity,
         logo: "",
         original : ''
     }
-    let matchups = [];
+    let matchups: Matchups[] = [];
     let graphPPG = [];
-    let length = espn.length / 2
+    let length = espn.length / 2;
+
     for (let i = (week - 1) * length; i < espnSchedule.length; i++) {
         if (espnSchedule[i].matchupPeriodId !== week) {
             break
@@ -220,27 +292,24 @@ export const setEspnWeek = (week, espn, espnSchedule, oldTopScorer, oldCloseOne)
 
         matchups.push({
             roster1: espnSchedule[i].away.teamId,
-            points1: espnSchedule[i].away.totalPoints,
+            points1: parseFloat(espnSchedule[i].away.totalPoints),
             logo1: espnSchedule[i].away.logo,
             shorterName1: espnSchedule[i].away.shorterName,
 
             roster2: espnSchedule[i].home.teamId,
-            points2: espnSchedule[i].home.totalPoints,
+            points2: parseFloat(espnSchedule[i].home.totalPoints),
             logo2: espnSchedule[i].home.logo,
             shorterName2: espnSchedule[i].home.shorterName
         })
     }
 
     for (let i = 0; i < matchups.length; i++) {
-        let points1 = parseFloat(matchups[i].points1);
-        let points2 = parseFloat(matchups[i].points2);
-
-        if (points1 > points2) {
-          graphPPG.push({ label: matchups[i].shorterName1, y: points1, color: "#00006b" });
-          graphPPG.push({ label: matchups[i].shorterName2, y: points2, color: "#b61e1e" });
+        if (matchups[i].points1 > matchups[i].points2) {
+          graphPPG.push({ label: matchups[i].shorterName1, y: matchups[i].points1, color: "#00006b" });
+          graphPPG.push({ label: matchups[i].shorterName2, y: matchups[i].points2, color: "#b61e1e" });
         } else {
-          graphPPG.push({ label: matchups[i].shorterName1, y: points1, color: "#b61e1e" });
-          graphPPG.push({ label: matchups[i].shorterName2, y: points2, color: "#00006b" });
+          graphPPG.push({ label: matchups[i].shorterName1, y: matchups[i].points1, color: "#b61e1e" });
+          graphPPG.push({ label: matchups[i].shorterName2, y: matchups[i].points2, color: "#00006b" });
         }
     }
 
@@ -263,9 +332,9 @@ export const setEspnWeek = (week, espn, espnSchedule, oldTopScorer, oldCloseOne)
             topScorer.original = matchups[k].logo2;
         }
 
-        if (Math.abs(parseFloat(matchups[k].points1) - parseFloat(matchups[k].points2)) < closeOne.difference) {
-            closeOne.difference = Math.abs(parseFloat(matchups[k].points1) - parseFloat(matchups[k].points2)).toFixed(2);
-            if (parseFloat(matchups[k].points1) > parseFloat(matchups[k].points2)) {
+        if (Math.abs(matchups[k].points1 - matchups[k].points2) < closeOne.difference) {
+            closeOne.difference = Math.abs(matchups[k].points1 - matchups[k].points2).toFixed(2);
+            if (matchups[k].points1 > matchups[k].points2) {
               closeOne.name = matchups[k].roster1;
               closeOne.logo = matchups[k].logo1;
               closeOne.original = matchups[k].logo1;
@@ -284,7 +353,7 @@ export const setEspnWeek = (week, espn, espnSchedule, oldTopScorer, oldCloseOne)
         const topScorerString = topScorer.logo.substring(topScorerLength-3, topScorerLength)
     
         if (topScorerString === 'svg') {
-            new SvgToPngConverter().convertFromInput(topScorer.logo, function(imgData){
+            new SvgToPngConverter().convertFromInput(topScorer.logo, function(imgData: string){
                 topScorer.logo = imgData
             });
         }
@@ -296,7 +365,7 @@ export const setEspnWeek = (week, espn, espnSchedule, oldTopScorer, oldCloseOne)
 
         if (closeOneString === 'svg') {
             // console.log('hit')
-            new SvgToPngConverter().convertFromInput(closeOne.logo, function(imgData){
+            new SvgToPngConverter().convertFromInput(closeOne.logo, function(imgData: string){
                 closeOne.logo = imgData
             });
         }
@@ -312,31 +381,31 @@ export const setEspnWeek = (week, espn, espnSchedule, oldTopScorer, oldCloseOne)
 }
 
 // creating the espn report --------------------------------------------
-export const createEspnWeeklyReport = () => async dispatch => {
+export const createEspnWeeklyReport = () => async (dispatch: any)=> {
     dispatch({ type: SET_ESPN_REPORT, payload: true })
     dispatch({ type: SET_SLEEPER_REPORT, payload: false })
 }
-export const createEspnOverallReport = () => async dispatch => {
-    dispatch ({ type: SET_ESPN_REPORT, payload: true })
-    dispatch ({ type: SET_SLEEPER_REPORT, payload: false })
+export const createEspnOverallReport = () => async (dispatch: any)=> {
+    dispatch({ type: SET_ESPN_REPORT, payload: true })
+    dispatch({ type: SET_SLEEPER_REPORT, payload: false })
 }
 
 // setting the espn title ----------------------------------------------
-export const setEspnTitle = (data) => async dispatch => {
-    dispatch ({ type: SET_ESPN_TITLE, payload: data })
+export const setEspnTitle = (data: string) => async (dispatch: any)=> {
+    dispatch({ type: SET_ESPN_TITLE, payload: data })
 }
 
 // setting the espn caption ---------------------------------------------
-export const setEspnCaption = data => async dispatch => {
+export const setEspnCaption = (data: string) => async (dispatch: any)=> {
     dispatch({ type: SET_ESPN_CAPTION, payload: data })
 }
 
 // setting the espn season --------------------------------------------------
-export const setEspnSeason = data => async dispatch => {
+export const setEspnSeason = (data: string) => async (dispatch: any)=> {
     dispatch({ type: SET_ESPN_SEASON, payload: data })
 }
 
 // setting the espn year -----------------------------------------------
-export const setEspnYear = data => async dispatch => {
+export const setEspnYear = (data: string) => async (dispatch: any)=> {
     dispatch({ type: SET_ESPN_YEAR, payload: data })
 }
