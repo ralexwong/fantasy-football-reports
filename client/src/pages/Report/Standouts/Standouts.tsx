@@ -1,5 +1,7 @@
 
+import { ReactNode } from 'react';
 import { useSelector } from 'react-redux';
+import Card from '../../../components/Card';
 
 type Profile = {
     name: string,
@@ -8,7 +10,7 @@ type Profile = {
     logo: string,
 }
 
-const Standouts = () => {   
+const Standouts = () => {
     const state = useSelector((state: any) => state)
 
     let topScorer: Profile = {
@@ -31,59 +33,19 @@ const Standouts = () => {
         topScorer = state.sleeper.sleeperTopScorer;
         closeOne = state.sleeper.sleeperCloseOne;
     }
-     
+
+    const lowerbox = (content: ReactNode) => {
+        return <>
+            {content}
+        </>
+    }
+
+
 
     return (
         <div className="cardsContainer">
-            <div>
-                <p className="reportTitle">TOP SCORER</p>
-
-                <div className='cards'>
-                    <div className='cards__outerBox'>
-                        <div className='cards__innerBox'>
-                            <img
-                                crossOrigin="anonymous"
-                                referrerPolicy="origin"
-                                onError={(event: React.SyntheticEvent<HTMLImageElement, Event>) => event.currentTarget.setAttribute("src", "./images/nfl-logo.jpg")}
-                                src={topScorer.logo}
-                                alt="poop"
-                                className="cards__image" />
-                        </div>
-                    </div>
-                    <div className='cards__lowerBox'>
-                        <p className="cards__name">
-                            {topScorer.name}:
-                            <br />
-                            {topScorer.score}
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <p className="reportTitle">CLOSE ONE</p>
-
-                <div className='cards'>
-                    <div className='cards__outerBox'>
-                        <div className='cards__innerBox'>
-                            <img
-                                crossOrigin="anonymous"
-                                referrerPolicy="origin"
-                                onError={(event: React.SyntheticEvent<HTMLImageElement, Event>) => event.currentTarget.setAttribute("src", "./images/nfl-logo.jpg")}
-                                src={closeOne.logo}
-                                alt="poop"
-                                className="cards__image" />
-                        </div>
-                    </div>
-                    <div className='cards__lowerBox'>
-                        <p className="cards__name">
-                            {closeOne.name}:
-                            <br></br>
-                            +{closeOne.difference}
-                        </p>
-                    </div>
-                </div>
-            </div>
+            <Card title='TOP SCORER' src={topScorer.logo} lowerbox={lowerbox(<>{topScorer.name}:<br />{topScorer.score}</>)} />
+            <Card title='CLOSE ONE' src={closeOne.logo} lowerbox={lowerbox(<>{closeOne.name}:<br></br>+{closeOne.difference}</>)} />
         </div>
     )
 }

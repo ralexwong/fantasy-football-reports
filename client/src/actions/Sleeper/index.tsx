@@ -3,7 +3,7 @@ import {
     FETCH_LEAGUE_INFO,
     SET_LEAGUE_ID,
     FETCH_MATCHUPPOINTS,
-    SET_WAIVERS_TO_STATE,
+    // SET_WAIVERS_TO_STATE,
     SET_SLEEPER_REPORT,
     SET_ESPN_REPORT,
     SET_SLEEPER_GRAPH_PPG,
@@ -131,7 +131,7 @@ export const fetchLeagueInfo = (league_id: string) => async (dispatch: any) => {
     powerRanking.sort(function (a, b) { return b.y - a.y })
 
     // create the recap object
-    let recapInfo = []
+    let recapInfo: Recap[] = []
     for (let i = 0; i < teamsInfo.length; i++) {
         let abbrev = teamsInfo[i].abbrev;
         let PPG = parseFloat((teamsInfo[i].totalPoints / ((teamsInfo[i].wins) + (teamsInfo[i].losses))).toFixed(2));

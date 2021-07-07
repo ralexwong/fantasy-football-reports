@@ -25,8 +25,8 @@ const Title = () => {
 
     return (
         <>
-            <p className="reportTitle reportTitle__header">{title}</p>
-            <p className="reportCaption">{caption}</p>
+            <h1 className="reportTitle reportTitle__header">{title}</h1>
+            <h2 className="reportCaption">{caption}</h2>
         </>
     )
 }

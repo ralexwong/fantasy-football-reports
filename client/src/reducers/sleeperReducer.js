@@ -34,7 +34,7 @@ import recap from './recap';
 const matchups = []
 
 const sleeperFirstPlace = {
-    name: 'bob0',
+    name: 'bob',
     logo: '',
     original: ''
 }

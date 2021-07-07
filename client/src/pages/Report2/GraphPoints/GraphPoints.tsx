@@ -5,10 +5,6 @@ import CanvasJSReact from '../../../canvasjs.react';
 const CanvasJS = CanvasJSReact.CanvasJS;
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-type Chart = {
-  
-}
-
 type Data = {
   y: number, 
   label: string
@@ -18,7 +14,6 @@ const GraphPoints = () => {
   const state = useSelector((state: any) => state)
 
   const addSymbols = (e: any) => {
-    console.log(e)
 		let suffixes = ["", "K", "M", "B"];
 		let order = Math.max(Math.floor(Math.log(e.value) / Math.log(1000)), 0);
 		if(order > suffixes.length - 1)

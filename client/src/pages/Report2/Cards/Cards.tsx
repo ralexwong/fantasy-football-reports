@@ -1,5 +1,6 @@
-
 import { useSelector } from 'react-redux';
+
+import Card from '../../../components/Card'
 
 const Cards = () => {
     const state = useSelector((state: any) => state)
@@ -24,50 +25,14 @@ const Cards = () => {
         lastPlaceName = state.sleeper.sleeperLastPlace.name;
     }
 
+    const lowerbox = (content: any) => {
+        return <>{content}</>
+    }
     
     return (
         <div className="cardsContainer">
-            <div>
-                <p className="reportTitle">FIRST PLACE</p>
-
-                <div className='cards'>
-                    <div className='cards__outerBox'>
-                        <div className='cards__innerBox'>
-                            <img
-                                crossOrigin="anonymous"
-                                referrerPolicy="origin"
-                                onError={(event: React.SyntheticEvent<HTMLImageElement, Event>) => event.currentTarget.setAttribute("src", "./images/nfl-logo.jpg")}
-                                src={firstPlace}
-                                alt="poop"
-                                className="cards__image" />
-                        </div>
-                    </div>
-                    <div className='cards__lowerBox'>
-                        <p className="cards__name">{firstPlaceName}</p>
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <p className="reportTitle">LAST PLACE</p>
-
-                <div className='cards'>
-                    <div className='cards__outerBox'>
-                        <div className='cards__innerBox'>
-                            <img
-                                crossOrigin="anonymous"
-                                referrerPolicy="origin"
-                                onError={(event: React.SyntheticEvent<HTMLImageElement, Event>) => event.currentTarget.setAttribute("src", "./images/nfl-logo.jpg")}
-                                src={lastPlace}
-                                alt="poop"
-                                className="cards__image" />
-                        </div>
-                    </div>
-                    <div className='cards__lowerBox'>
-                        <p className="cards__name">{lastPlaceName}</p>
-                    </div>
-                </div>
-            </div>
+            <Card title='FIRST PLACE' src={firstPlace} lowerbox={lowerbox(firstPlaceName)} />
+            <Card title='FIRST PLACE' src={lastPlace} lowerbox={lowerbox(lastPlaceName)} />
         </div>
     )
 }

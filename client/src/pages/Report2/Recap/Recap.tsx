@@ -1,7 +1,7 @@
 
 import { useSelector } from 'react-redux';
 
-type Recap = {
+type Content = {
   abbrev: string,
   PPGcolor: string,
   PFcolor: string,
@@ -23,7 +23,7 @@ const Recap = () => {
     week = state.sleeper.sleeperWeek;
   }
 
-  let recap: Recap[] = [];
+  let recap: Content[] = [];
   if (state.espn.espnReport && state.espn.espnRecap) {
     recap = state.espn.espnRecap
   } else if (state.sleeper.sleeperReport && state.sleeper.sleeperRecap) {
@@ -36,7 +36,7 @@ const Recap = () => {
       <table>
         <thead>
           <tr>
-            <th className="recap__week">Week {week}</th>
+            <th className="recap__week" colSpan={7}>Week {week}</th>
           </tr>
           <tr>
             <th>Team</th>
