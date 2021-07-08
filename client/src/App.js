@@ -27,16 +27,21 @@ function App() {
         <Intronav />
         <Switch>
           <Route exact path="/" component={Intro} />
-          <Route exact path="/weekly-report-sleeper" render={props => <SleeperWeeklyReport {...props} />} />
+          <Route exact path="/weekly-report-sleeper" render={SleeperWeeklyReport} />
           <Route exact path="/overall-report-sleeper" render={props => <SleeperOverallReport {...props} />}  />
-          <Route exact path="/payouts" render={props => <Payouts {...props} />} />
-          <Route exact path="/login" render={props => <Login {...props} />} />
-          <Route exact path="/signup" render={props => <Signup {...props} />} />
+
           <Route exact path="/sleeper" render={Sleeper} />
           <Route exact path="/espn" render={Espn} />
 
           <Route exact path="/weekly-report-espn" render={props => <EspnWeeklyReport {...props} />} />
           <Route exact path="/overall-report-espn" render={props => <EspnOverallReport {...props} />}  />
+
+
+
+
+          <Route exact path="/payouts" render={props => <Payouts {...props} />} />
+          <Route exact path="/login" render={props => <Login {...props} />} />
+          <Route exact path="/signup" render={props => <Signup {...props} />} />
 
 
           <Route component={NoMatch} />

@@ -6,12 +6,12 @@ import GraphPoints from './GraphPoints';
 
 const Report2 = () => {
   return (
-    <div className="reportContainer col">
+    <>
       <Title />
       <DateRow />
       <MiddleRow />
       <GraphPoints />
-    </div>
+    </>
   );
 }
 

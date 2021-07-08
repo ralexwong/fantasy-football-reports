@@ -1,6 +1,6 @@
 
 import { useSelector } from 'react-redux';
-import ScoreboardRow from '../ScoreboardRow';
+import ScoreboardRow from '../ScoreboardItem';
 
 type Matchups = {
     points1: string,
@@ -29,18 +29,20 @@ const Scoreboard = () => {
 
     return (
         <div className="scoreboard">
-            <p className="reportTitle reportTitle__scoreboard">SCOREBOARD</p>
+            <h2 className="reportTitle reportTitle__scoreboard">SCOREBOARD</h2>
 
-            <p className="scoreboard__week">Week {week}</p>
+            <h3 className="scoreboard__week">Week {week}</h3>
+            <ul>
                 {matchups.map((matchup, i) => (
-                    <ScoreboardRow
-                        key={i}
-                        points1={matchup.points1}
-                        points2={matchup.points2}
-                        roster1={matchup.roster1}
-                        roster2={matchup.roster2}
-                    />
-                ))}
+                        <ScoreboardRow
+                            key={i}
+                            points1={matchup.points1}
+                            points2={matchup.points2}
+                            roster1={matchup.roster1}
+                            roster2={matchup.roster2}
+                        />
+                    ))}
+            </ul>
         </div>
     );
 }

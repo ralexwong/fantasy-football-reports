@@ -44,8 +44,8 @@ const Standouts = () => {
 
     return (
         <div className="cardsContainer">
-            <Card title='TOP SCORER' src={topScorer.logo} lowerbox={lowerbox(<>{topScorer.name}:<br />{topScorer.score}</>)} />
-            <Card title='CLOSE ONE' src={closeOne.logo} lowerbox={lowerbox(<>{closeOne.name}:<br></br>+{closeOne.difference}</>)} />
+            <Card title='TOP SCORER' src={topScorer.logo} lowerbox={lowerbox(<>{topScorer.name}:<p>{topScorer.score}</p></>)} />
+            <Card title='CLOSE ONE' src={closeOne.logo} lowerbox={lowerbox(<>{closeOne.name}:<p>+{closeOne.difference}</p></>)} />
         </div>
     )
 }

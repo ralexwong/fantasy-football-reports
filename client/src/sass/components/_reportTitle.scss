@@ -19,7 +19,7 @@
         }
 
         @include respond(iphone) {
-            font-size: 3.15rem;
+            font-size: 3rem;
         }
     }
 
@@ -44,10 +44,6 @@
     }
 
     @include respond(galaxy) {
-        font-size: 1.5rem;
-    }
-
-    @include respond(iphone) {
         font-size: 1.5rem;
     }
 }

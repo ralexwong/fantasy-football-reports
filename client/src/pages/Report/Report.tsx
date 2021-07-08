@@ -7,12 +7,12 @@ import GraphPPG from "./GraphPPG";
 
 const Report = () => {
   return (
-    <div className="reportContainer">
+    <>
       <Title />
       <DateRow />
       <MiddleRow />
       <GraphPPG />
-    </div>
+    </>
   );
 }
 

@@ -11,7 +11,7 @@ const Header = (props: Props) => {
                     <span className='heading-primary--sub'>Weekly Reports</span>
                 </h1>
 
-                <button style={{ fontSize: '2rem' }} onClick={props.click} className='btn btn--white btn--animated'>Choose Your Platform!</button>  
+                <button style={{ fontSize: '2rem' }} onClick={props.click} className='btn btn--white'>Choose Your Platform!</button>  
             </div>
         </header>
     )

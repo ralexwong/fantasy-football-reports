@@ -15,17 +15,19 @@
         color:white;
     }
 
-    &__row {
+    &__item {
         border: 2px solid black;
         margin-top: 5rem;
-
-        display: grid;
-        grid-template-columns: 15% 1fr 8%; 
 
         @include respond(phone) {
             margin-top: 2.5rem;
             font-size: 1.5rem;
         }
+    }
+
+    &__row {
+        display: grid;
+        grid-template-columns: 15% 1fr 8%; 
     }
 
     &__scores {

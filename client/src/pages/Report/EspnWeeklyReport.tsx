@@ -8,10 +8,10 @@ import Report from "./Report"
 
 const ComponentToPrint = React.forwardRef<HTMLDivElement>((props, ref) => {
   return (
-    <div ref={ref} style={{ padding: "1rem" }}>
+    <div className="reportContainer" ref={ref} tabIndex={0}>
       <Report />
     </div>
-    )
+  )
 })
 
 const EspnWeeklyReport = () => {
@@ -20,19 +20,19 @@ const EspnWeeklyReport = () => {
 
   dispatch(createEspnWeeklyReport())
   return (
-    <>        
+    <>
       <div style={{ textAlign: "center" }}>
         <button className="btn btn--espn u-margin-top" onClick={() => exportComponentAsPNG(componentRef)}>
           Click here to download your report as an image!
         </button>
       </div>
-        <ComponentToPrint ref={componentRef} />
+      <ComponentToPrint ref={componentRef} />
       <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-      <Link to="/overall-report-espn">
-        <button className="btn btn--espn">
-          Click here for the overall report!
-        </button>
-      </Link>
+        <Link to="/overall-report-espn">
+          <button className="btn btn--espn">
+            Click here for the overall report!
+          </button>
+        </Link>
       </div>
     </>
   )

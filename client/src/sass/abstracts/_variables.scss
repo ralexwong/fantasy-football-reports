@@ -6,25 +6,25 @@ $border-radius-app: 1rem;
 $navbar-height: 5rem;
 $navbar-width: 65vw;
 
-$primary-color: #6171ff;
-$light-blue: #69b7f7;
-$dark-blue: #3549fc;
-$darker-blue: #00006b;
+$primary-color: hsl(234deg 100% 69%);
+$light-blue: hsl(207, 90%, 69%);
+$dark-blue: hsl(234, 97%, 60%);
+$darker-blue: hsl(240, 100%, 21%);
 
-$light-purple: #9f56ff;
-$dark-purple: #7700ff;
+$light-purple: hsl(266, 100%, 67%);
+$dark-purple: hsl(268, 100%, 50%);
 
-$light-green: #7ed56f;
-$dark-green: #28b485;
+$light-green: hsl(111, 55%, 64%);
+$dark-green: hsl(160, 64%, 43%);
 
-$dark-orange: #ff3030;
+$dark-orange: hsl(0, 100%, 59%);
 
-$light-grey: #f7f7f7;
-$light-grey-2: #eee;
+$light-grey: hsl(0, 0%, 97%);
+$light-grey-2: hsl(0, 0%, 93%);
 
-$white-color: #fff;
-$black-color: black;
+$white-color: hsl(0, 0%, 100%);
+$black-color: hsl(0, 0%, 0%);
 
-$grey-color: #777;
-$grey-color-2: #999;
-$grey-color-3: #333;
+$grey-color: hsl(0, 0%, 47%);
+$grey-color-2: hsl(0, 0%, 60%);
+$grey-color-3: hsl(0, 0%, 20%);

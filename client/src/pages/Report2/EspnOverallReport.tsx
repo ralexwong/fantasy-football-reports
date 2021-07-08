@@ -8,7 +8,7 @@ import Report2 from "./Report2"
 
 const ComponentToPrint = React.forwardRef<HTMLInputElement>((props, ref) => {
   return (
-    <div ref={ref} style={{ padding: "1rem" }}>
+    <div className="reportContainer" ref={ref} tabIndex={0}>
       <Report2 />
     </div>
     )

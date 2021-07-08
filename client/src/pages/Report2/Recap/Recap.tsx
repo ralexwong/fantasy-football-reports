@@ -32,7 +32,7 @@ const Recap = () => {
 
   return (
     <div className="recap">
-      <p className="reportTitle">NUMBERS RECAP</p>
+      <h2 className="reportTitle">NUMBERS RECAP</h2>
       <table>
         <thead>
           <tr>
