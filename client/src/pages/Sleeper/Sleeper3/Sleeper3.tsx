@@ -26,7 +26,7 @@ const Sleeper3 = () => {
     //     const response = axios.get(`https://api.login.yahoo.com/oauth2/request_auth?client_id=
     //     dj0yJmk9UlJtNUhhNW5UeFc1JmQ9WVdrOWJqVlBTRGRTV2xVbWNHbzlNQT09JnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PTdi--&redirect_uri=https://localhost:3000&response_type=code&language=en-us`);
 
-        
+
 
     //     // client.callback()
 
@@ -35,7 +35,7 @@ const Sleeper3 = () => {
     //     //         console.log("I got the token: ", token)
     //     //     })
 
-        
+
     // }, [])
 
     const handleChange = (event: any) => {
@@ -48,21 +48,22 @@ const Sleeper3 = () => {
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         onLoading();
+        console.log('hit')
         if (week > 18 || week < 1) {
             dispatch(setSleeperError('Week is not within the weeks of the season'))
         } else {
             dispatch(setSleeperError(false))
             dispatch(fetchMatchupPoints(week, state.league_id, state.league_info));
         }
-        
+
     }
 
     const onLoading = () => {
         setLoading(true);
-        setTimeout(() => { 
+        setTimeout(() => {
             setLoading(false)
-        }, 
-        2000);
+        },
+            2000);
     }
 
     return (
@@ -73,21 +74,21 @@ const Sleeper3 = () => {
                 </p>
             </div>
             <form onSubmit={onSubmit}>
-            <div className='input__container'>
-                <label className='input__label' htmlFor='sleeperWeek'>Week</label>
-                <input
-                    name='sleeperWeek'
-                    id='sleeperWeek'
-                    required
-                    maxLength={2}
-                    className="input__input"
-                    onChange={handleChange}
-                    autoComplete="off"
-                    type="number"
-                    value={week}
-                />
-            </div>
-            {state.sleeperWeekError ? (
+                <div className='input__container'>
+                    <label className='input__label' htmlFor='sleeperWeek'>Week</label>
+                    <input
+                        name='sleeperWeek'
+                        id='sleeperWeek'
+                        required
+                        maxLength={2}
+                        className="input__input"
+                        onChange={handleChange}
+                        autoComplete="off"
+                        type="number"
+                        value={week}
+                    />
+                </div>
+                {state.sleeperWeekError ? (
                     <p className='input__helpertext red'><span aria-label='red-X' role='img'>❌</span> {state.sleeperWeekError}</p>
                 ) : (
                     <p className='input__helpertext'></p>

@@ -11,11 +11,7 @@ import Intro from './pages/Intro/Intro';
 import Sleeper from './pages/Sleeper/Sleeper';
 import Espn from './pages/Espn/Espn';
 
-import EspnWeeklyReport from "./pages/Report/EspnWeeklyReport.tsx";
-import EspnOverallReport from './pages/Report2/EspnOverallReport.tsx';
-
-import SleeperWeeklyReport from './pages/Report/SleeperWeeklyReport.tsx';
-import SleeperOverallReport from './pages/Report2/SleeperOverallReport.tsx';
+import ReportContainer from './ReportContainer.tsx';
 
 import history from './history';
 
@@ -27,16 +23,14 @@ function App() {
         <Intronav />
         <Switch>
           <Route exact path="/" component={Intro} />
-          <Route exact path="/weekly-report-sleeper" render={SleeperWeeklyReport} />
-          <Route exact path="/overall-report-sleeper" render={props => <SleeperOverallReport {...props} />}  />
+          <Route exact path="/weekly-report-sleeper" render={props => <ReportContainer {...props} platform={`sleeper`} type={`weekly`} other={`overall`} />} />
+          <Route exact path="/overall-report-sleeper" render={props => <ReportContainer {...props} platform={`sleeper`} type={'overall'} other={`weekly`} />}  />
 
           <Route exact path="/sleeper" render={Sleeper} />
           <Route exact path="/espn" render={Espn} />
 
-          <Route exact path="/weekly-report-espn" render={props => <EspnWeeklyReport {...props} />} />
-          <Route exact path="/overall-report-espn" render={props => <EspnOverallReport {...props} />}  />
-
-
+          <Route exact path="/weekly-report-espn" render={props => <ReportContainer {...props} platform={`espn`} type={'weekly'} other={`overall`} />} />
+          <Route exact path="/overall-report-espn" render={props => <ReportContainer {...props} platform={`espn`} type={'overall'} other={`weekly`} />}  />
 
 
           <Route exact path="/payouts" render={props => <Payouts {...props} />} />

@@ -47,6 +47,9 @@ const espnCloseOne = {
     logo: "",
 }
 
+const espnTitle = "DIRTY TRIBUNE";
+const espnCaption = 'Fantasy football is about proving you are better than your friends';
+
 for (let i = 0; i < 5; i++) {
     matchups.push({
         points1: 100,
@@ -70,7 +73,9 @@ const initialState = {
     espnCloseOne,
     espnFirstPlace,
     espnLastPlace,
-    espnID: 'ID'
+    espnID: 'ID',
+    espnTitle,
+    espnCaption
 }
 
 

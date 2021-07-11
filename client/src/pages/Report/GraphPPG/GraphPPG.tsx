@@ -57,6 +57,8 @@ const GraphPPG = () => {
     graphPPG = state.sleeper.sleeperGraphPPG
   } 
 
+  console.log(graphPPG)
+
   const options: Options = {
     animationEnabled: true,
     theme: "light2", //"light1", "dark1", "dark2"

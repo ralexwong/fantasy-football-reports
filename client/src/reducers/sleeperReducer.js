@@ -56,6 +56,9 @@ const sleeperCloseOne = {
     logo: '',
 }
 
+const sleeperTitle = "DIRTY TRIBUNE";
+const sleeperCaption = 'Fantasy football is about proving you are better than your friends';
+
 for (let i = 0; i < 5; i++) {
     matchups.push({
         points1: 100,
@@ -77,7 +80,9 @@ const initialState = {
     sleeperCloseOne,
     sleeperFirstPlace,
     sleeperLastPlace,
-    setSleeperError: false
+    setSleeperError: false,
+    sleeperTitle,
+    sleeperCaption
 }
 
 

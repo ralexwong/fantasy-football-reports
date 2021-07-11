@@ -385,10 +385,6 @@ export const createEspnWeeklyReport = () => async (dispatch: any)=> {
     dispatch({ type: SET_ESPN_REPORT, payload: true })
     dispatch({ type: SET_SLEEPER_REPORT, payload: false })
 }
-export const createEspnOverallReport = () => async (dispatch: any)=> {
-    dispatch({ type: SET_ESPN_REPORT, payload: true })
-    dispatch({ type: SET_SLEEPER_REPORT, payload: false })
-}
 
 // setting the espn title ----------------------------------------------
 export const setEspnTitle = (data: string) => async (dispatch: any)=> {

@@ -13,6 +13,8 @@ const Scoreboard = () => {
 
     const state = useSelector((state: any) => state)
 
+    console.log(state)
+
     let matchups: Matchups[] = [];
     if (state.espn.espnReport) {
         matchups = state.espn.espnMatchups

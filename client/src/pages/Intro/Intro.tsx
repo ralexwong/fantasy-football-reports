@@ -21,7 +21,7 @@ const Index = () => {
       <Header click={()=> scrollToSection(myRef)} />
       <About />
       <Features />
-      <Platforms ref={myRef} />
+      <Platforms reference={myRef} />
       {/* <Reviews /> */}
       <Register />
       <Footer />

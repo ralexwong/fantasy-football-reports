@@ -224,7 +224,7 @@ type CloseOne = {
 
 type Array = {
     roster_id: string,
-    points: string | number,
+    points: number,
     matchup_id: number,
     logo: string,
     name: string,
@@ -238,17 +238,17 @@ type League_info = {
 
 type Matchups = {
     roster1: string,
-    points1: number | string,
+    points1: number,
     logo1: string,
 
     roster2: string,
-    points2: number | string,
+    points2: number,
     logo2: string,
 } 
 
 type GraphPPG = {
     label: string,
-    y: number | string,
+    y: number,
     color: string
 }
 
@@ -269,7 +269,7 @@ export const fetchMatchupPoints = (week: number, league_id: string, league_info:
     for (let i = 0; i < data.length; i++) {
       array.push({
         roster_id: data[i].roster_id,
-        points: parseFloat(data[i].points).toFixed(2),
+        points: parseFloat(data[i].points.toFixed(2)),
         matchup_id: data[i].matchup_id,
         logo: '',
         name: ''
@@ -389,11 +389,6 @@ export const fetchMatchupPoints = (week: number, league_id: string, league_info:
 // }
 
 // create sleeper report --------------------------------------
-
-export const createSleeperOverallReport = () => (dispatch: any) => {
-    dispatch({ type: SET_SLEEPER_REPORT, payload: true })
-    dispatch({ type: SET_ESPN_REPORT, payload: false })
-}
 export const createSleeperWeeklyReport = () => (dispatch: any) => {
     dispatch({ type: SET_SLEEPER_REPORT, payload: true })
     dispatch({ type: SET_ESPN_REPORT, payload: false })

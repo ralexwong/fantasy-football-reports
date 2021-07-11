@@ -2,10 +2,7 @@
 import { useSelector } from 'react-redux';
 
 const DateRow = () => {
-
     const state = useSelector((state: any) => state)
-    console.log(state)
-
     const grabDate = () => {
         const days: string[] = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
         const months: string[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];

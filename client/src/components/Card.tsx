@@ -11,7 +11,7 @@ function Card({ title, src, lowerbox }: {title: string, src: string, lowerbox: J
                             referrerPolicy="origin"
                             onError={(event: React.SyntheticEvent<HTMLImageElement, Event>) => event.currentTarget.setAttribute("src", "./images/nfl-logo.jpg")}
                             src={src}
-                            alt={`${title}-profile-picture`}
+                            alt={`${title}-profile`}
                             className="cards__image" />
                     </div>
                 </div>
