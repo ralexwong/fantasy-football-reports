@@ -45,7 +45,7 @@ const Sleeper3 = () => {
     }
 
 
-    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const onSubmit = (e: (React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement, MouseEvent>) ) => {
         e.preventDefault();
         onLoading();
         console.log('hit')

@@ -17,7 +17,7 @@ const Sleeper1 = () => {
         setInput(message);
     }
 
-    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const onSubmit = (e: (React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement, MouseEvent>) ) => {
         e.preventDefault();
         onLoading();
 
@@ -79,7 +79,7 @@ const Sleeper1 = () => {
                         Loading...
                     </button>
                 ) : (
-                    <button type="button" className="btn btn--sleeper">Submit</button>
+                    <button onClick={(e) => onSubmit(e)} type="button" className="btn btn--sleeper">Submit</button>
                 )}
             </form>
         </div>

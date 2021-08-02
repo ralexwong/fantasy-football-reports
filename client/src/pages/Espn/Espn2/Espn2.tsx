@@ -17,7 +17,7 @@ const Espn2 = () => {
         setInput(message);
     }
 
-    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const onSubmit = (e: (React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement, MouseEvent>) ) => {
         e.preventDefault();
         onLoading();
         if (!state.espnID) {
